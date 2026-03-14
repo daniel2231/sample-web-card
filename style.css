@@ -1,12 +1,11 @@
 :root {
     --bg-color: #f4f6f9;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --accent-primary: #0033a0; /* Shinwoo Global inspired blue */
-    --accent-secondary: #0056b3;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --accent-red: #ff0000;
     --card-bg: #ffffff;
     --card-border: #e2e8f0;
-    --font-family: 'Noto Sans KR', sans-serif;
+    --font-family: 'Inter', Arial, sans-serif;
 }
 
 * {
@@ -20,15 +19,10 @@ body {
     color: var(--text-primary);
     font-family: var(--font-family);
     min-height: 100vh;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 1200px;
+    overflow-x: hidden;
 }
 
-/* --- Loader Animation --- */
+/* --- Loader Animation (Retained) --- */
 #loader {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -44,7 +38,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
 }
 
 .loader-img {
@@ -59,13 +52,11 @@ body {
     to { opacity: 1; transform: scale(1.02); }
 }
 
-
-
 /* --- Main Card Layout --- */
 .wrapper {
     width: 100%;
-    height: 100vh; 
-    padding: 0;
+    min-height: 100vh;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,248 +73,95 @@ body {
 .card {
     position: relative;
     width: 100%;
-    height: 100%;
-    max-width: none;
+    max-width: 900px; /* PC layout maximum width */
     background: var(--card-bg);
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-    overflow-x: hidden;
-    overflow-y: auto;
-    transform-style: preserve-3d;
-    transition: all 0.1s ease-out;
-    will-change: transform;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    background: #fff;
+    border-radius: 8px; /* Slightly sharp corners like a real paper card */
 }
 
-/* Desktop Styles */
-@media (min-width: 480px) {
-    .wrapper {
-        padding: 20px;
-        height: auto;
-    }
-    .card {
-        max-width: 380px;
-        height: auto;
-        border-radius: 20px;
-        border: 1px solid var(--card-border);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-        overflow: hidden;
-    }
-}
-
-/* Shine effect inner layer */
-.shine {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%);
-    pointer-events: none;
-    z-index: 2;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.card:hover .shine {
-    opacity: 1;
-}
-
-.card-inner {
-    padding: 30px 20px;
+/* Landscape Layout Internal Container */
+.landscape-layout {
+    padding: 40px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100%;
-    z-index: 1;
-    position: relative;
-    transform: translateZ(30px);
+    gap: 25px;
 }
 
-@media (min-width: 480px) {
-    .card-inner {
-        padding: 40px 30px;
-        min-height: auto;
-    }
-    
-    .top-company-name {
-        font-size: 1.5rem;
-        letter-spacing: 1.5px;
-    }
-}
-
-/* --- Company Header --- */
-.company-header {
-    width: 100%;
-    margin-bottom: 20px;
-    margin-top: -10px;
+/* --- Top Section: Images --- */
+.top-images {
     display: flex;
-    justify-content: center;
-    padding: 0 60px; /* Prevent overlap with absolute toggle */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 5px;
 }
 
-.top-company-name {
-    font-size: 1.25rem;
-    font-weight: 900;
-    color: var(--accent-primary);
-    letter-spacing: 1px;
-    text-align: center;
+.img-company {
+    width: 68%;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid #eaeaea; /* Subtle border for factory image */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Optional: depth */
 }
 
-/* --- Language Toggle --- */
-.lang-toggle {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    display: flex;
-    background: #f1f5f9;
-    border-radius: 20px;
-    padding: 4px;
-    z-index: 10;
-}
-
-[data-ko] {
-    transition: opacity 0.25s ease, filter 0.25s ease;
-}
-
-[data-ko].lang-fade-out {
-    opacity: 0;
-    filter: blur(4px);
-}
-
-.lang-toggle button {
-    border: none;
-    background: transparent;
-    padding: 4px 10px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    border-radius: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: inherit;
-}
-
-.lang-toggle button.active {
-    background: #fff;
-    color: var(--text-primary);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-/* --- Avatar --- */
-.avatar-container {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    border-radius: 50%;
-    padding: 4px;
-    background: #fff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    border: 1px solid var(--card-border);
-}
-
-.avatar {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
+.img-profile {
+    width: 25%;
+    height: auto;
     object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow like the mock */
 }
 
-.info {
-    text-align: center;
-    margin-bottom: 25px;
-    width: 100%;
+/* --- Bottom Section: Info Grid --- */
+.bottom-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px; /* Space between Indonesia and Vietnam cols */
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #111;
 }
 
-.name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-    color: var(--text-primary);
-    letter-spacing: -0.5px;
-}
-
-.title {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-    margin-bottom: 12px;
-}
-
-/* --- Contact Details --- */
-.contact-details {
-    width: 100%;
+.info-col {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 30px;
-    background: #f8fafc;
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid var(--card-border);
 }
 
-.detail-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.85rem;
-    color: var(--text-primary);
+.branch {
+    margin-bottom: 25px;
 }
 
-.detail-item ion-icon {
+.branch p {
+    margin-bottom: 8px; /* Space between text clusters */
+}
+
+.country-heading {
+    color: var(--accent-red);
     font-size: 1.1rem;
-    color: var(--accent-primary);
-    background: #fff;
-    padding: 5px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    font-weight: 900;
+    margin-bottom: 2px;
+    text-transform: uppercase;
 }
 
-.detail-item a {
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-.detail-item a:hover {
-    color: var(--accent-primary);
+.company-sub {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
-/* --- Actions --- */
-.actions {
-    width: 100%;
+/* Specific spacing for USA */
+.branch-usa {
+    margin-top: auto; /* Push down if possible, or just standard margin */
 }
 
-.btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 14px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
+/* specific spacing for left bottom */
+.email-director {
+    margin-top: auto; 
+    padding-top: 15px;
+}
+
+.email-director p {
     font-size: 0.95rem;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.primary-btn {
-    background: var(--accent-primary);
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 51, 160, 0.2);
-}
-
-.primary-btn:hover {
-    transform: translateY(-2px);
-    background: var(--accent-secondary);
-    box-shadow: 0 6px 16px rgba(0, 51, 160, 0.3);
-}
-
-/* Responsive fixes */
-@media (max-height: 600px) {
-    .card-inner { padding: 25px 20px; }
-    .avatar-container { width: 70px; height: 70px; margin-bottom: 15px;}
-    .contact-details { margin-bottom: 20px; gap: 8px; padding: 12px;}
+    margin-bottom: 4px;
 }
