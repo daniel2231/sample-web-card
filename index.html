@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=900, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Shinwoo Global - Digital Business Card</title>
     <!-- Basic sans-serif fonts to match the mock -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -19,65 +19,69 @@
 
     <!-- Main Container -->
     <div class="wrapper">
-        <div class="card" id="business-card">
-            <div class="card-inner landscape-layout">
-                
-                <!-- Top Section: Images -->
-                <div class="top-images">
-                    <img src="./images/company.jpeg" class="img-company" alt="Shinwoo Global HQ">
-                    <img src="./images/photo.png" class="img-profile" alt="Managing Director Kang Hyeon Ho">
-                </div>
-
-                <!-- Bottom Section: Info Grid -->
-                <div class="bottom-info">
+        <div class="rotation-wrapper">
+            <div class="card" id="business-card">
+                <div class="card-inner modern-landscape">
                     
-                    <!-- Left Column -->
-                    <div class="info-col">
-                        <div class="branch">
-                            <h3 class="country-heading">INDONESIA</h3>
-                            <p class="company-sub"><strong>PT. Shinwoo Global Indonesia</strong></p>
-                            <p>Jl. Flores 1 Blok C1 - No 7, Bekasi Fajar<br>
-                               Industrial Estate, Ds. Mekarwangi, Kec. Cikarang<br>
-                               Barat, Kab. Bekasi, Prop. Jawa Barat - Indonesia<br>
-                               17520
-                            </p>
-                            <p>T: +62 21 8998 1567<br>
-                               F: +62 21 8998 1617<br>
-                               Mobali : 0816792538
-                            </p>
+                    <!-- Left Pane: Identity & Company Banner -->
+                    <div class="pane-left">
+                        <div class="profile-container">
+                            <img src="./images/photo.png" alt="Kang hyeon ho" class="profile-avatar">
                         </div>
-
-                        <div class="email-director">
-                            <p><strong>Email : 2hkang@shinwoo-global.com</strong></p>
-                            <p><strong>Managing Director Kang hyeon ho</strong></p>
+                        <div class="director-info">
+                            <h2>Kang Hyeon Ho</h2>
+                            <p class="title">Managing Director</p>
+                            <p class="email">2hkang@shinwoo-global.com</p>
                         </div>
                     </div>
 
-                    <!-- Right Column -->
-                    <div class="info-col right-col">
-                        <div class="branch vietnam-branch">
-                            <h3 class="country-heading">VIETNAM</h3>
-                            <p class="company-sub"><strong>Shinwoo Vina Co., Ltd.</strong></p>
-                            <p>7/14, CAY DA ST, TAN PHU TOWN, TAN BINH<br>
-                               COMMUNE,<br>
-                               DIAN DISTRICT, BINH DUONG PROVINCE,<br>
-                               VIET NAM
-                            </p>
-                            <p>T: +84 0650 379 0380 - 3<br>
-                               F: +84 0650 379 0385
-                            </p>
+                    <!-- Right Pane: Global Branches Grid -->
+                    <div class="pane-right">
+                        
+                        <!-- Left Column: Indonesia -->
+                        <div class="branch-col">
+                            <div class="branch">
+                                <h3 class="country-heading">INDONESIA</h3>
+                                <p class="company-sub"><strong>PT. Shinwoo Global Indonesia</strong></p>
+                                <p>Jl. Flores 1 Blok C1 - No 7, Bekasi Fajar<br>
+                                   Industrial Estate, Ds. Mekarwangi, Kec. Cikarang<br>
+                                   Barat, Kab. Bekasi, Prop. Jawa Barat - Indonesia<br>
+                                   17520
+                                </p>
+                                <div class="contact-details">
+                                    <p><span>T:</span> +62 21 8998 1567</p>
+                                    <p><span>F:</span> +62 21 8998 1617</p>
+                                    <p><span>Mob:</span> 0816 792 538</p>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="branch branch-usa">
-                            <h3 class="country-heading">USA</h3>
-                            <p class="company-sub"><strong>USA Representative - Shinwoo Global</strong></p>
-                            <p>PO Box 30873 Portland, OR 97294 USA</p>
-                            <p>T: +1 971 533 9795</p>
+                        <!-- Right Column: Vietnam & USA -->
+                        <div class="branch-col">
+                            <div class="branch">
+                                <h3 class="country-heading">VIETNAM</h3>
+                                <p class="company-sub"><strong>Shinwoo Vina Co., Ltd.</strong></p>
+                                <p>7/14, CAY DA ST, TAN PHU TOWN, TAN BINH COMMUNE,<br>
+                                   DIAN DISTRICT, BINH DUONG PROVINCE, VIET NAM
+                                </p>
+                                <div class="contact-details">
+                                    <p><span>T:</span> +84 0650 379 0380 - 3</p>
+                                    <p><span>F:</span> +84 0650 379 0385</p>
+                                </div>
+                            </div>
+
+                            <div class="branch branch-usa">
+                                <h3 class="country-heading">USA</h3>
+                                <p class="company-sub"><strong>USA Representative - Shinwoo Global</strong></p>
+                                <p>PO Box 30873 Portland, OR 97294 USA</p>
+                                <div class="contact-details">
+                                    <p><span>T:</span> +1 971 533 9795</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
-            </div>
         </div>
     </div>
 

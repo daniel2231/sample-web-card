@@ -73,57 +73,81 @@ body {
 .card {
     position: relative;
     width: 100%;
-    max-width: 900px; /* PC layout maximum width */
+    max-width: 950px;
+    height: 500px; /* Fixed height for beautiful desktop landscape */
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-    background: #fff;
-    border-radius: 8px; /* Slightly sharp corners like a real paper card */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    overflow: hidden;
 }
 
-/* Landscape Layout Internal Container */
-.landscape-layout {
-    padding: 40px;
+/* --- Split Landscape Design --- */
+.modern-landscape {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+/* Left Pane: Visual Identity & Banner */
+.pane-left {
+    flex: 0 0 35%;
+    background-image: linear-gradient(rgba(0, 32, 96, 0.75), rgba(0, 0, 0, 0.9)), url('./images/company.jpeg');
+    background-size: cover;
+    background-position: center;
+    color: white;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    text-align: center;
 }
 
-/* --- Top Section: Images --- */
-.top-images {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 5px;
-}
-
-.img-company {
-    width: 68%;
-    height: auto;
-    object-fit: contain;
-    border: 1px solid #eaeaea; /* Subtle border for factory image */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Optional: depth */
-}
-
-.img-profile {
-    width: 25%;
-    height: auto;
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow like the mock */
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    margin-bottom: 20px;
 }
 
-/* --- Bottom Section: Info Grid --- */
-.bottom-info {
+.director-info h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.director-info .title {
+    font-size: 0.95rem;
+    color: #ffd700; /* Subtle gold accent for rank */
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.director-info .email {
+    font-size: 0.85rem;
+    color: #dddddd;
+    word-break: break-all;
+}
+
+/* Right Pane: Location Data Grid */
+.pane-right {
+    flex: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px; /* Space between Indonesia and Vietnam cols */
-    font-size: 0.85rem;
-    line-height: 1.4;
-    color: #111;
+    padding: 40px;
+    gap: 30px;
+    background-color: #ffffff;
+    align-content: center; /* Center content vertically */
 }
 
-.info-col {
+.branch-col {
     display: flex;
     flex-direction: column;
 }
@@ -133,35 +157,149 @@ body {
 }
 
 .branch p {
-    margin-bottom: 8px; /* Space between text clusters */
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
 }
 
 .country-heading {
     color: var(--accent-red);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 900;
-    margin-bottom: 2px;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 
 .company-sub {
-    font-size: 0.9rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-/* Specific spacing for USA */
-.branch-usa {
-    margin-top: auto; /* Push down if possible, or just standard margin */
-}
-
-/* specific spacing for left bottom */
-.email-director {
-    margin-top: auto; 
-    padding-top: 15px;
-}
-
-.email-director p {
     font-size: 0.95rem;
-    margin-bottom: 4px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.contact-details {
+    margin-top: 5px;
+}
+
+.contact-details p {
+    font-size: 0.85rem;
+    margin-bottom: 3px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.contact-details span {
+    color: var(--accent-red);
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+.branch-usa {
+    margin-top: 15px; /* Adjust USA push-down */
+}
+
+.rotation-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Responsive 90deg Auto-Rotate for Mobile (No-Scroll Fit) --- */
+@media (max-width: 800px) and (orientation: portrait) {
+    body, html {
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
+
+    .rotation-wrapper {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100vh; 
+        height: 100vw; 
+        transform: translate(-50%, -50%) rotate(90deg);
+        transform-origin: center center;
+    }
+
+    .card {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        border-radius: 0; 
+        box-shadow: none;
+        overflow: hidden; /* Perfect fit */
+    }
+
+    .modern-landscape {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Scale Down Left Pane dynamically using vmin */
+    .pane-left {
+        flex: 0 0 35%; 
+        padding: 4vmin 3vmin;
+    }
+
+    .profile-avatar {
+        width: 20vmin; /* Size avatar proportionally to mobile height (which is physical width) */
+        height: 20vmin;
+        border-width: 0.5vmin;
+        margin-bottom: 2vmin;
+    }
+
+    .director-info h2 {
+        font-size: 3.8vmin; 
+        margin-bottom: 1vmin;
+    }
+
+    .director-info .title {
+        font-size: 2.8vmin;
+        margin-bottom: 2vmin;
+    }
+
+    .director-info .email {
+        font-size: 2.5vmin;
+    }
+
+    /* Scale Down Right Pane */
+    .pane-right {
+        padding: 4vmin 5vmin;
+        gap: 4vmin;
+    }
+
+    .branch {
+        margin-bottom: 2vmin;
+    }
+
+    .branch p {
+        font-size: 2.4vmin; 
+        line-height: 1.35;
+        margin-bottom: 1vmin;
+    }
+
+    .country-heading {
+        font-size: 3.5vmin; 
+        margin-bottom: 1vmin;
+    }
+
+    .company-sub {
+        font-size: 3vmin; 
+        margin-bottom: 1.5vmin;
+    }
+
+    .contact-details p {
+        font-size: 2.5vmin;
+    }
+
+    .branch-usa {
+        margin-top: 3vmin;
+    }
 }
